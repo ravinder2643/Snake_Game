@@ -49,7 +49,7 @@ function gameEngine(){
         musicSound.play();
         score = 0; 
     }
-
+    
     // If you have eaten the food, increment the score and regenerate the food
     if(snakeArr[0].y === food.y && snakeArr[0].x ===food.x){
         foodSound.play();
@@ -76,7 +76,7 @@ function gameEngine(){
     snakeArr[0].y += inputDir.y;
 
      // Part 2: Display the snake and Food
-    // Display the snake
+    // Display the snake on screen
     board.innerHTML = "";
     snakeArr.forEach((e, index)=>{
         snakeElement = document.createElement('div');
@@ -99,5 +99,16 @@ function gameEngine(){
      foodElement.classList.add('food')
      board.appendChild(foodElement);
  
- 
- }
+}
+
+// Main logic starts here
+musicSound.play();
+let hiscore = localStorage.getItem("hiscore");
+if(hiscore === null){
+    hiscoreval = 0;
+    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
+}
+else{
+    hiscoreval = JSON.parse(hiscore);
+    hiscoreBox.innerHTML = "HiScore: " + hiscore;
+}
